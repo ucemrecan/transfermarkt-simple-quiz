@@ -2,8 +2,6 @@
 
 A web application that tests your football knowledge by challenging you to identify players based on their transfer history. This project is a simple implementation of a daily football quiz game.
 
-![Transfermarkt Quiz Screenshot](https://via.placeholder.com/800x400?text=Transfermarkt+Quiz+Screenshot)
-
 ## About the Project
 
 This is a simple daily quiz application where:

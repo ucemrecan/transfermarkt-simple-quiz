@@ -1,4 +1,3 @@
-"use client";
 import {
   Check as CheckIcon,
   Close as CloseIcon,
@@ -12,22 +11,27 @@ import {
   Stack,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { lowerCase } from "lodash";
 import { useState } from "react";
 
-const PlayerGuessInput = ({
+export default function PlayerGuessInput({
   correctAnswer,
   hints = [],
   onCorrectGuess,
   onFailure,
   maxAttempts = 3,
-}) => {
+}) {
   const [guess, setGuess] = useState("");
   const [feedback, setFeedback] = useState("");
   const [attempts, setAttempts] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [gameStatus, setGameStatus] = useState("playing");
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleGuessSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +86,7 @@ const PlayerGuessInput = ({
   };
 
   return (
-    <Paper elevation={1} sx={{ padding: 3, width: "100%" }}>
+    <Paper elevation={1} sx={{ padding: isMobile ? 2 : 3, width: "100%" }}>
       {gameStatus === "playing" && (
         <>
           <form onSubmit={handleGuessSubmit}>
@@ -95,13 +99,16 @@ const PlayerGuessInput = ({
                 onChange={(e) => setGuess(e.target.value)}
                 autoComplete="off"
                 disabled={gameStatus !== "playing"}
+                size={isMobile ? "small" : "medium"}
               />
 
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: isMobile ? "column" : "row",
+                  gap: isMobile ? 1 : 0,
                   justifyContent: "space-between",
-                  alignItems: "center",
+                  alignItems: isMobile ? "stretch" : "center",
                 }}
               >
                 <Button
@@ -109,6 +116,8 @@ const PlayerGuessInput = ({
                   color="primary"
                   type="submit"
                   disabled={gameStatus !== "playing" || !guess.trim()}
+                  fullWidth={isMobile}
+                  size={isMobile ? "small" : "medium"}
                 >
                   Submit Guess
                 </Button>
@@ -120,6 +129,9 @@ const PlayerGuessInput = ({
                   disabled={
                     gameStatus !== "playing" || hintsUsed >= hints.length
                   }
+                  fullWidth={isMobile}
+                  size={isMobile ? "small" : "medium"}
+                  sx={{ mt: isMobile ? 1 : 0 }}
                 >
                   Use Hint ({hints.length - hintsUsed} left)
                 </Button>
@@ -156,7 +168,7 @@ const PlayerGuessInput = ({
         <Box
           sx={{
             mt: 2,
-            p: 2,
+            p: isMobile ? 1.5 : 2,
             bgcolor:
               gameStatus === "success"
                 ? "success.light"
@@ -170,13 +182,15 @@ const PlayerGuessInput = ({
         >
           {gameStatus === "success" && <CheckIcon sx={{ mr: 1 }} />}
           {gameStatus === "failed" && <CloseIcon sx={{ mr: 1 }} />}
-          <Typography>{feedback}</Typography>
+          <Typography variant={isMobile ? "body2" : "body1"}>
+            {feedback}
+          </Typography>
         </Box>
       )}
 
       {gameStatus !== "playing" && (
         <Box sx={{ mt: 2, textAlign: "center" }}>
-          <Typography variant="h6">
+          <Typography variant={isMobile ? "subtitle1" : "h6"}>
             {gameStatus === "success"
               ? `Congratulations! Your score: ${Math.max(
                   1,
@@ -191,6 +205,4 @@ const PlayerGuessInput = ({
       )}
     </Paper>
   );
-};
-
-export default PlayerGuessInput;
+}

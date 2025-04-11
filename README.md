@@ -71,19 +71,19 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 Contributions are welcome and appreciated! This is an open-source project that's just getting started.
 
 ## Fork the Project
-
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
-Commit your Changes (git commit -m 'Add some AmazingFeature')
-Push to the Branch (git push origin feature/AmazingFeature)
-Open a Pull Request
+ 
+ - Create your Feature Branch (git checkout -b feature/AmazingFeature)
+ - Commit your Changes (git commit -m 'Add some AmazingFeature')
+ - Push to the Branch (git push origin feature/AmazingFeature)
+ - Open a Pull Request
 
 ## Some ideas for contributions:
 
-Adding more players to the database
-Implementing new features
-Improving the UI/UX
-Fixing bugs
-Writing tests
+ - Adding more players to the database
+ - Implementing new features
+ - Improving the UI/UX
+ - Fixing bugs
+ - Writing tests
 
 
 ## Contact
@@ -93,5 +93,5 @@ Project Link: https://github.com/ucemrecan/transfermarkt-quiz
 
 ## Acknowledgments
 
-Data inspired by Transfermarkt
-Built with Next.js and Material-UI
+- Data inspired by Transfermarkt
+- Built with Next.js and Material-UI
